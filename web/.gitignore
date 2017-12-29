@@ -1,0 +1,17 @@
+node_modules/
+dist/
+npm-debug.log*
+
+# Editor directories and files
+.idea
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.project
+
+# Visual Studio Code
+!.vscode/launch.json
+.vscode/settings.json
+package-lock.json
