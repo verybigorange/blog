@@ -6,9 +6,12 @@ module.exports = {
         app : path.join(__dirname,'../client/app.js')
     },
     output:{
-        path: path.join(__dirname,'../dist'),
+        path: path.join(__dirname,'../dist/static'),
         filename:'[name].[hash].js',
-        publicPath:'/public'
+        publicPath:''
+    },
+    resolve:{
+        extensions:['.js','.jsx','.json']
     },
     module:{
         rules:[

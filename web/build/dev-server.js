@@ -1,6 +1,26 @@
-const devConfig = require("./webpack.dev.config");
-const webpack_dev_server = require("webpack-dev-server");
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const express = require("express");
+const app = express();
+const webpack = require('webpack');
+const path = require("path");
+const chalk = require("chalk");
 
-const server = new webpack_dev_server();
+const devConfig = require("./webpack.dev.config.js");
 
-server.listen(3000,()=>console.log("server is listening on 3000"))
+console.log('> Starting dev server...')
+
+const instance = webpackDevMiddleware(webpack(devConfig),
+    {
+        publicPath:"" //注意这里的路径要和webpack中的output的路径publicPath一致
+    }
+)
+//用webpack-dev-middleware将webpack与express关联起来
+app.use(instance);
+
+instance.waitUntilValid(()=>{
+    app.listen(3000,()=>{
+        console.log(chalk.green("\n server is listening on 3000... \n"));
+    });
+})
+
+
